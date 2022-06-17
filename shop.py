@@ -118,4 +118,6 @@ else:
         w.write_uint32(0)
         w.write_uint32(items2["Unk 1"])
         w.write_uint32(0)
+    w.seek(0, whence=2)
+    w.write_uint8(0)
     fe.write(w.buffer())
