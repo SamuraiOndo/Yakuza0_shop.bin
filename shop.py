@@ -90,10 +90,10 @@ else:
     for i in range(sharedcount):
         shared2 = p["Shared Text"][str(i)]
         stay = w.pos()
-        pointer = w.size() + 1
+        pointer = w.size()
         w.align(pointer)
         w.seek(0, whence=2)
-        w.write_str(shared2["String"])
+        w.write_str(shared2["String"],True)
         w.seek(stay)
         w.write_uint32(pointer)
     w.seek(272)
@@ -109,15 +109,13 @@ else:
         w.write_uint32(0)
         w.write_uint32(items2["Price 2"])
         stay3 = w.pos()
-        pointer = w.size() + 1
+        pointer = w.size()
         w.align(pointer)
         w.seek(0, whence=2)
-        w.write_str(items2["Description"])
+        w.write_str(items2["Description"],True)
         w.seek(stay3)
         w.write_uint32(pointer)
         w.write_uint32(0)
         w.write_uint32(items2["Unk 1"])
         w.write_uint32(0)
-    w.seek(0, whence=2)
-    w.write_uint8(0)
     fe.write(w.buffer())
